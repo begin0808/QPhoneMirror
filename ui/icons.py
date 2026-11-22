@@ -121,39 +121,40 @@ def _render_facebook_circle(size: int) -> Image.Image:
     """以 4 倍超採樣繪製經典藍底白字圓形 Facebook 'f' 圖示。"""
     scale = 4
     s = size * scale
-    img = Image.new("RGBA", (s, s), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
-
     fb_blue = "#1877F2"
     pad = s * 0.04
+
+    img = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
     draw.ellipse([pad, pad, s - pad, s - pad], fill=fb_blue)
 
-    # 在內部繪製俐落對稱的白色 'f' 幾何字形
+    # 在透明圖層繪製白色 'f'，再以 alpha_composite 疊加於藍色圓底上
     f_layer = Image.new("RGBA", (s, s), (0, 0, 0, 0))
     fd = ImageDraw.Draw(f_layer)
-    # 頂部向右彎鉤（外圓 + 內藍挖空）
-    fd.ellipse([s * 0.43, s * 0.18, s * 0.75, s * 0.50], fill="#FFFFFF")
-    fd.rectangle([s * 0.58, s * 0.18, s * 0.74, s * 0.31], fill="#FFFFFF")
-    fd.ellipse([s * 0.57, s * 0.31, s * 0.77, s * 0.51], fill=fb_blue)
-    fd.rectangle([s * 0.57, s * 0.38, s * 0.80, s * 0.52], fill=fb_blue)
+    # 頂部向右彎鉤（外白圓 + 內藍挖空）
+    fd.ellipse([s * 0.43, s * 0.17, s * 0.77, s * 0.51], fill="#FFFFFF")
+    fd.rectangle([s * 0.58, s * 0.17, s * 0.75, s * 0.31], fill="#FFFFFF")
+    fd.ellipse([s * 0.57, s * 0.31, s * 0.79, s * 0.53], fill=fb_blue)
+    fd.rectangle([s * 0.57, s * 0.38, s * 0.82, s * 0.53], fill=fb_blue)
     # 主幹（向下延伸至圓形底緣）
-    fd.rectangle([s * 0.43, s * 0.33, s * 0.57, s * 0.98], fill="#FFFFFF")
+    fd.rectangle([s * 0.43, s * 0.33, s * 0.57, s * 0.99], fill="#FFFFFF")
     # 橫槓（右側微斜切，還原經典 Facebook 'f' 比例）
     fd.polygon(
         [
-            (s * 0.31, s * 0.48),
-            (s * 0.72, s * 0.48),
-            (s * 0.69, s * 0.60),
-            (s * 0.31, s * 0.60),
+            (s * 0.30, s * 0.48),
+            (s * 0.73, s * 0.48),
+            (s * 0.70, s * 0.61),
+            (s * 0.30, s * 0.61),
         ],
         fill="#FFFFFF",
     )
 
-    # 以圓形遮罩裁切底部，確保 'f' 底部完美貼齊藍色圓邊
+    combined = Image.alpha_composite(img, f_layer)
+    # 以圓形遮罩裁切整體 Alpha，讓白色 'f' 底部完美貼齊藍色圓邊
     mask = Image.new("L", (s, s), 0)
     ImageDraw.Draw(mask).ellipse([pad, pad, s - pad, s - pad], fill=255)
-    img.paste(f_layer, (0, 0), mask)
-    return img.resize((size, size), Image.Resampling.LANCZOS)
+    combined.putalpha(mask)
+    return combined.resize((size, size), Image.Resampling.LANCZOS)
 
 
 def create_facebook_icon(size: int = 16) -> ctk.CTkImage:

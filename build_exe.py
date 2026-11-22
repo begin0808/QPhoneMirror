@@ -128,9 +128,10 @@ def build() -> None:
             sys.exit(2)
     built_dir.rename(release_dir)
 
+    # 發布版維持零預裝第三方執行檔（由使用者於程式內一鍵下載官方核心，兼顧輕量與開源授權合規）
     target_bin = release_dir / "bin"
-    if (ROOT / "bin").exists():
-        shutil.copytree(ROOT / "bin", target_bin, dirs_exist_ok=True)
+    if target_bin.exists():
+        shutil.rmtree(target_bin, ignore_errors=True)
     (target_bin / "scrcpy").mkdir(parents=True, exist_ok=True)
     (target_bin / "uxplay").mkdir(parents=True, exist_ok=True)
     (target_bin / "ffmpeg").mkdir(parents=True, exist_ok=True)

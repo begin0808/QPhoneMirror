@@ -11,6 +11,18 @@
 - **一鍵自動下載核心**：首次使用時一鍵從官方 GitHub 下載對應開源核心（Scrcpy / UxPlay / FFmpeg），完成後即可永久離線使用
 - **三套高對比主題即時切換**：櫻花薄荷・可愛清新 ／ 森林燕麥・北歐清新 ／ 星空軟糖・柔和夜色（全介面按鈕與文字皆達 WCAG ≥ 4.5:1 清晰對比）
 
+![QPhoneMirror 三套高對比質感主題展示](assets/screenshots/07_themes_showcase.png)
+
+---
+
+## 介面實景預覽
+
+| 安卓手機投影（USB ＋ Wi-Fi 無線） | 蘋果 AirPlay（一鍵下載免裝 Bonjour） |
+| :---: | :---: |
+| ![安卓手機投影介面](assets/screenshots/01_android_mirror.png) | ![蘋果 AirPlay 介面](assets/screenshots/02_ios_airplay.png) |
+| **高畫質電腦螢幕錄影（系統音＋麥克風雙軌）** | **內建 8 大章節操作說明（支援反白複製）** |
+| ![電腦螢幕錄影介面](assets/screenshots/03_screen_recorder.png) | ![操作說明介面](assets/screenshots/04_user_guide.png) |
+
 ---
 
 ## 核心功能一覽
