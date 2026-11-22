@@ -1,0 +1,34 @@
+# Python 編譯與虛擬環境
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+*.egg-info/
+
+# PyInstaller 打包產物與本機絕對路徑 .spec
+build/
+dist/
+QPhoneMirror.spec
+*.zip
+*.sha256
+
+# 外部核心執行檔、個人設定與輸出錄影／截圖
+bin/
+captures/
+config/settings.json
+config/settings.json.bak
+config/settings.json.tmp
+
+# 內部開發規格與審查紀錄（不推上公開儲存庫）
+docs/
+DEVELOPMENT_PLAN.md
+
+# 編輯器與系統暫存檔
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
