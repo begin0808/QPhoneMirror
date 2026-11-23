@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, Optional
 
 APP_NAME = "QPhoneMirror"
-APP_VERSION = "V20261122"
+APP_VERSION = "V20261124"
 COPYRIGHT_YEAR = "2026"
 STUDIO_NAME = "Studio0808 智造實驗室"
 STUDIO_URL = "https://begin0808.github.io/studio0808/"

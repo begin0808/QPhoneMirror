@@ -3,7 +3,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011%20(64--bit)-0078D6?style=flat-square)](https://github.com/begin0808/QPhoneMirror/releases)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-1B825B?style=flat-square)](LICENSE)
-[![Release](https://img.shields.io/badge/Version-V20261122-C93B62?style=flat-square)](https://github.com/begin0808/QPhoneMirror/releases)
+[![Release](https://img.shields.io/badge/Version-V20261124-C93B62?style=flat-square)](https://github.com/begin0808/QPhoneMirror/releases)
 
 **QPhoneMirror** 是一款專為 Windows 設計的**免費、開源、免安裝、100% 台灣繁體中文**跨平台手機投影與高畫質電腦螢幕錄影工具。
 
@@ -20,7 +20,7 @@
 | 安卓手機投影（USB ＋ Wi-Fi 無線） | 蘋果 AirPlay（一鍵下載免裝 Bonjour） |
 | :---: | :---: |
 | ![安卓手機投影介面](assets/screenshots/01_android_mirror.png) | ![蘋果 AirPlay 介面](assets/screenshots/02_ios_airplay.png) |
-| **高畫質電腦螢幕錄影（系統音＋麥克風雙軌）** | **內建 8 大章節操作說明（支援反白複製）** |
+| **高畫質電腦螢幕錄影（系統音＋麥克風雙軌）** | **內建 9 大章節操作說明（支援反白複製）** |
 | ![電腦螢幕錄影介面](assets/screenshots/03_screen_recorder.png) | ![操作說明介面](assets/screenshots/04_user_guide.png) |
 
 ---
@@ -48,7 +48,7 @@
 - **資料保護機制**：原子封裝輸出、混流失敗自動搶救完整純畫面影片，並支援自訂儲存資料夾。
 
 ### 4. 內建完整操作說明與獨立執行紀錄視窗
-- 左側內建 8 大章節「操作說明」（支援滑鼠反白選取與右鍵複製），並提供獨立彈出式「執行紀錄」視窗方便檢視連線明細與快速排查。
+- 左側內建 9 大章節「操作說明」（含 USB 偵錯安全性說明，支援滑鼠反白選取與右鍵複製），並提供獨立彈出式「執行紀錄」視窗方便檢視連線明細與快速排查。
 
 ---
 
@@ -115,8 +115,25 @@ QPhoneMirror/
     ├── tab_android.py           # 安卓手機投影分頁
     ├── tab_ios.py               # 蘋果 AirPlay 分頁
     ├── tab_recorder.py          # 電腦螢幕錄影與多螢幕框選分頁
-    └── tab_guide.py             # 8 大章節可複製操作說明分頁
+    └── tab_guide.py             # 9 大章節可複製操作說明分頁
 ```
+
+---
+
+## 常見問題與安全性說明（FAQ）
+
+### Q1：安卓手機開啟「USB 偵錯」有安全性風險嗎？為什麼股票／銀行 App 會跳提醒？
+- **不會憑空被遠端入侵**：單純開啟「USB 偵錯」不會讓網路駭客直接入侵手機。現代 Android 具備金鑰授權機制，接到任何新電腦時都必須**先解鎖手機，且由你親手點選「允許」**才能建立連線。
+- **為什麼金融／股票 App 會跳提醒**：台灣的銀行與券商下單 App 依金融資安檢測規範，啟動時會檢查系統是否開啟「USB 偵錯」，以防範詐騙誘導操作或程式側錄；跳出提醒屬正常防護提示，**並不代表手機中毒**。
+- **最安心的日常使用建議**：
+  1. **用完就關**：平常沒有要投影時，把「USB 偵錯」關掉即可避免股票／銀行 App 跳提醒；要用 QPhoneMirror 時再打開（只要 3 秒、免重開機，先前對自己電腦的授權紀錄仍會保留）。
+  2. **外出與公共網路守則**：只在**自己的私人電腦**勾選「一律允許這台電腦」；外出充電盡量使用自備充電器或行動電源，避免直插不明公用 USB 孔；於公共 Wi-Fi 環境建議關閉「無線偵錯」。若曾授權過他人電腦，可在「開發人員選項」中點選 **「撤銷 USB 偵錯授權」** 一鍵清除。
+  3. **免開啟 USB 偵錯替代方案**：若只想投放畫面觀看、不想開啟開發人員選項，可直接使用「安卓手機投影」最下方的 **「開啟無線投影接收（Miracast / Smart View）」**。
+
+### Q2：為什麼電腦偵測不到安卓手機，或 Wi-Fi 無法連線？
+- **有線偵測不到**：請確認使用的 USB 線具備資料傳輸功能（非純充電線），且手機已開啟「USB 偵錯」並點選「允許」。
+- **無線連不上**：請確認手機與電腦連接在同一個 Wi-Fi 網段，且 Windows 防火牆未封鎖 QPhoneMirror。
+- **排查詳細原因**：點選主視窗左下角「檢視執行紀錄」，即可檢視完整連線與錯誤明細。
 
 ---
 
